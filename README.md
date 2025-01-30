@@ -4,6 +4,7 @@
 [![](https://img.shields.io/librariesio/dependents/nuget/AwesomeAssertions.Json.svg?label=dependent%20libraries)](https://libraries.io/nuget/AwesomeAssertions.Json)
 ![](https://img.shields.io/badge/release%20strategy-githubflow-orange.svg)
 [![Coverage Status](https://coveralls.io/repos/github/AwesomeAssertions/AwesomeAssertions.Json/badge.svg?branch=master)](https://coveralls.io/github/AwesomeAssertions/AwesomeAssertions.Json?branch=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AwesomeAssertions_AwesomeAssertions.Json&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AwesomeAssertions_AwesomeAssertions.Json)
 
 ### Available extension methods
 
