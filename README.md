@@ -1,8 +1,10 @@
-[![build](https://github.com/AwesomeAssertions/AwesomeAssertions.json/actions/workflows/build.yml/badge.svg)](https://github.com/AwesomeAssertions/AwesomeAssertions.json/actions/workflows/build.yml)
+[![build](https://github.com/AwesomeAssertions/AwesomeAssertions.Json/actions/workflows/build.yml/badge.svg)](https://github.com/AwesomeAssertions/AwesomeAssertions.Json/actions/workflows/build.yml)
 [![](https://img.shields.io/github/release/AwesomeAssertions/FluentAssertions.Json.svg?label=latest%20release)](https://github.com/AwesomeAssertions/FluentAssertions.Json/releases/latest)
-[![](https://img.shields.io/nuget/dt/AwesomeAssertions.json.svg?label=nuget%20downloads)](https://www.nuget.org/packages/AwesomeAssertions.json)
+[![](https://img.shields.io/nuget/dt/AwesomeAssertions.json.svg?label=nuget%20downloads)](https://www.nuget.org/packages/AwesomeAssertions.Json)
 [![](https://img.shields.io/librariesio/dependents/nuget/AwesomeAssertions.Json.svg?label=dependent%20libraries)](https://libraries.io/nuget/AwesomeAssertions.Json)
 ![](https://img.shields.io/badge/release%20strategy-githubflow-orange.svg)
+[![Coverage Status](https://coveralls.io/repos/github/AwesomeAssertions/AwesomeAssertions.Json/badge.svg?branch=v7)](https://coveralls.io/github/AwesomeAssertions/AwesomeAssertions.Json?branch=v7)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AwesomeAssertions_AwesomeAssertions.Json&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AwesomeAssertions_AwesomeAssertions.Json)
 
 ### Available extension methods
 
