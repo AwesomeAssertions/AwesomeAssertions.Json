@@ -5,11 +5,6 @@
 ![](https://img.shields.io/badge/release%20strategy-githubflow-orange.svg)
 [![Coverage Status](https://coveralls.io/repos/github/AwesomeAssertions/AwesomeAssertions.Json/badge.svg?branch=master)](https://coveralls.io/github/AwesomeAssertions/AwesomeAssertions.Json?branch=master)
 
-## *"With Fluent Assertions, the assertions look beautiful, natural and most importantly, extremely readable"* (by [Girish](https://twitter.com/girishracharya))
-
-* See [www.fluentassertions.com](http://www.fluentassertions.com/) for more information about the main library.
-* Join the chat at [![Join the chat at https://gitter.im/dennisdoomen/fluentassertions](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dennisdoomen/fluentassertions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 ### Available extension methods
 
 - `BeEquivalentTo()`
