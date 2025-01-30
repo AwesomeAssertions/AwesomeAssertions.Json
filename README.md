@@ -1,9 +1,9 @@
-[![build](https://github.com/fluentassertions/fluentassertions.json/actions/workflows/build.yml/badge.svg)](https://github.com/fluentassertions/fluentassertions.json/actions/workflows/build.yml)
-[![](https://img.shields.io/github/release/FluentAssertions/FluentAssertions.Json.svg?label=latest%20release)](https://github.com/FluentAssertions/FluentAssertions.Json/releases/latest)
-[![](https://img.shields.io/nuget/dt/FluentAssertions.Json.svg?label=nuget%20downloads)](https://www.nuget.org/packages/FluentAssertions.Json)
-[![](https://img.shields.io/librariesio/dependents/nuget/FluentAssertions.Json.svg?label=dependent%20libraries)](https://libraries.io/nuget/FluentAssertions.Json)
+[![build](https://github.com/AwesomeAssertions/AwesomeAssertions.Json/actions/workflows/build.yml/badge.svg)](https://github.com/AwesomeAssertions/AwesomeAssertions.Json/actions/workflows/build.yml)
+[![](https://img.shields.io/github/release/AwesomeAssertions/FluentAssertions.Json.svg?label=latest%20release)](https://github.com/AwesomeAssertions/FluentAssertions.Json/releases/latest)
+[![](https://img.shields.io/nuget/dt/AwesomeAssertions.Json.svg?label=nuget%20downloads)](https://www.nuget.org/packages/AwesomeAssertions.Json)
+[![](https://img.shields.io/librariesio/dependents/nuget/AwesomeAssertions.Json.svg?label=dependent%20libraries)](https://libraries.io/nuget/AwesomeAssertions.Json)
 ![](https://img.shields.io/badge/release%20strategy-githubflow-orange.svg)
-[![Coverage Status](https://coveralls.io/repos/github/fluentassertions/fluentassertions.json/badge.svg?branch=master)](https://coveralls.io/github/fluentassertions/fluentassertions.json?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/AwesomeAssertions/AwesomeAssertions.json/badge.svg?branch=master)](https://coveralls.io/github/AwesomeAssertions/AwesomeAssertions.Json?branch=master)
 
 ## *"With Fluent Assertions, the assertions look beautiful, natural and most importantly, extremely readable"* (by [Girish](https://twitter.com/girishracharya))
 

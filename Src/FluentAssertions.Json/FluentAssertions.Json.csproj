@@ -11,6 +11,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<PackageId>AwesomeAssertions.Json</PackageId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
@@ -19,13 +20,12 @@
   </PropertyGroup>
   <PropertyGroup>
     <Authors>Dennis Doomen;Marcel Körtgen</Authors>
-    <PackageDescription>Fluent Assertions extensions for Newtonsoft.Json</PackageDescription>
-    <PackageProjectUrl>https://www.fluentassertions.com</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/fluentassertions/fluentassertions.json.git</RepositoryUrl>
+    <PackageDescription>Awesome Assertions extensions for Newtonsoft.Json</PackageDescription>
+    <RepositoryUrl>https://github.com/AwesomeAssertions/AwesomeAssertions.Json.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageIcon>FluentAssertions.png</PackageIcon>
-    <PackageReleaseNotes>See https://github.com/fluentassertions/fluentassertions.json/releases/</PackageReleaseNotes>
+    <PackageReleaseNotes>See https://github.com/AwesomeAssertions/AwesomeAssertions.Json/releases/</PackageReleaseNotes>
     <Copyright>Copyright 2024-$([System.DateTime]::Now.ToString(yyyy)) Xceed Software Inc., all rights reserved</Copyright>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
@@ -33,7 +33,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="8.0.0" />
+    <PackageReference Include="AwesomeAssertions" Version="8.0.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
