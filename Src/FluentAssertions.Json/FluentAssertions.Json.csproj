@@ -11,7 +11,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<PackageId>AwesomeAssertions.Json</PackageId>
+    <PackageId>AwesomeAssertions.Json</PackageId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
