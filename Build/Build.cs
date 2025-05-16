@@ -113,14 +113,14 @@ class Build : NukeBuild
             if (EnvironmentInfo.IsWin)
             {
                 DotNetTest(s => s
-                    .SetProjectFile(Solution.FluentAssertions_Json_Specs)
+                    .SetProjectFile(Solution.AwesomeAssertions_Json_Specs)
                     .SetFramework("net47")
                     .SetConfiguration("Debug")
                     .EnableNoBuild());
             }
 
             DotNetTest(s => s
-                .SetProjectFile(Solution.FluentAssertions_Json_Specs)
+                .SetProjectFile(Solution.AwesomeAssertions_Json_Specs)
                 .SetFramework("net8.0")
                 .SetConfiguration("Debug")
                 .EnableNoBuild()
@@ -138,7 +138,7 @@ class Build : NukeBuild
                 .AddReports(RootDirectory / "TestResults/**/coverage.cobertura.xml")
                 .AddReportTypes("HtmlInline_AzurePipelines_Dark", "lcov")
                 .SetClassFilters("-System.Diagnostics.CodeAnalysis.StringSyntaxAttribute")
-                .SetAssemblyFilters("+FluentAssertions.Json"));
+                .SetAssemblyFilters("+AwesomeAssertions.Json"));
 
             string link = RootDirectory / "TestResults" / "reports" / "index.html";
 
@@ -153,7 +153,7 @@ class Build : NukeBuild
         .Executes(() =>
         {
             DotNetPack(s => s
-                .SetProject(Solution.FluentAssertions_Json)
+                .SetProject(Solution.AwesomeAssertions_Json)
                 .SetOutputDirectory(ArtifactsDirectory)
                 .SetConfiguration("Release")
                 .EnableNoLogo()
