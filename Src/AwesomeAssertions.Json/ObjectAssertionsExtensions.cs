@@ -1,7 +1,7 @@
 ﻿using System;
-using FluentAssertions.Equivalency;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+using AwesomeAssertions.Equivalency;
+using AwesomeAssertions.Execution;
+using AwesomeAssertions.Primitives;
 using Newtonsoft.Json;
 
 namespace AwesomeAssertions.Json

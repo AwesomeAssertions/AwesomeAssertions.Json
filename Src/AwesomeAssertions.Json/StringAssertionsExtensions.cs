@@ -1,6 +1,6 @@
 using System;
-using FluentAssertions.Execution;
-using FluentAssertions.Primitives;
+using AwesomeAssertions.Execution;
+using AwesomeAssertions.Primitives;
 using Newtonsoft.Json.Linq;
 
 namespace AwesomeAssertions.Json

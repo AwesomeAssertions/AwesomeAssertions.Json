@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using FluentAssertions.Execution;
+using AwesomeAssertions.Execution;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 

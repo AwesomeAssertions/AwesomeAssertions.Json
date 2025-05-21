@@ -1,4 +1,4 @@
-using FluentAssertions.Formatting;
+using AwesomeAssertions.Formatting;
 using Newtonsoft.Json.Linq;
 using Xunit;
 

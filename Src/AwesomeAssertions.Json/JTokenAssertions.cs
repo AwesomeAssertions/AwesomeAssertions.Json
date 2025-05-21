@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using AwesomeAssertions.Collections;
+using AwesomeAssertions.Execution;
+using AwesomeAssertions.Formatting;
 using AwesomeAssertions.Json.Common;
-using FluentAssertions.Collections;
-using FluentAssertions.Execution;
-using FluentAssertions.Formatting;
-using FluentAssertions.Primitives;
+using AwesomeAssertions.Primitives;
 using Newtonsoft.Json.Linq;
 
 namespace AwesomeAssertions.Json

@@ -1,7 +1,7 @@
 ﻿using System;
+using AwesomeAssertions;
 using AwesomeAssertions.Json;
 using AwesomeAssertions.Json.Specs.Models;
-using FluentAssertions;
 using Xunit;
 
 // NOTE that we are using both namespaces 'AwesomeAssertions' & 'AwesomeAssertions.Json' from an external namespace to force compiler disambiguation warnings

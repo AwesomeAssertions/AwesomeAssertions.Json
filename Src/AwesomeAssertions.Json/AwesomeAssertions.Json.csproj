@@ -26,14 +26,14 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageIcon>AwesomeAssertions.png</PackageIcon>
     <PackageReleaseNotes>See https://github.com/AwesomeAssertions/AwesomeAssertions.Json/releases/</PackageReleaseNotes>
-    <Copyright>Copyright Dennis Doomen 2010-2021</Copyright>
+    <Copyright>Copyright Dennis Doomen 2010-2021, AwesomeAssertions 2025-</Copyright>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net47|AnyCPU'">
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AwesomeAssertions" Version="8.0.0" />
+    <PackageReference Include="AwesomeAssertions" Version="9.0.0-rc.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

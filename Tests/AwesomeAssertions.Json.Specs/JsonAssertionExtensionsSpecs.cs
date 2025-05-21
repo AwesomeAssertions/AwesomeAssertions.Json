@@ -1,5 +1,5 @@
+using AwesomeAssertions;
 using AwesomeAssertions.Json;
-using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using Xunit;
 

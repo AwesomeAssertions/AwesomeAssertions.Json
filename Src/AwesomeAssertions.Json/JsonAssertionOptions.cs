@@ -1,5 +1,5 @@
 ﻿using System;
-using FluentAssertions.Equivalency;
+using AwesomeAssertions.Equivalency;
 
 namespace AwesomeAssertions.Json
 {

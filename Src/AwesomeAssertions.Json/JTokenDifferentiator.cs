@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions.Execution;
+using AwesomeAssertions.Execution;
 using Newtonsoft.Json.Linq;
 
 namespace AwesomeAssertions.Json

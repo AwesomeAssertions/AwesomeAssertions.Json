@@ -1,5 +1,5 @@
 ﻿using System;
-using FluentAssertions.Equivalency;
+using AwesomeAssertions.Equivalency;
 using Newtonsoft.Json.Linq;
 using Xunit;
 

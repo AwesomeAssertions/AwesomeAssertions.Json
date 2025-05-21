@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using FluentAssertions.Formatting;
+using AwesomeAssertions.Formatting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
