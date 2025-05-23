@@ -1,0 +1,73 @@
+﻿[assembly: System.Reflection.AssemblyMetadata("RepositoryUrl", "https://github.com/AwesomeAssertions/AwesomeAssertions.Json.git")]
+namespace AwesomeAssertions.Json
+{
+    public interface IJsonAssertionOptions<T>
+    {
+        AwesomeAssertions.Json.IJsonAssertionRestriction<T, TProperty> Using<TProperty>(System.Action<AwesomeAssertions.Equivalency.IAssertionContext<TProperty>> action);
+    }
+    public interface IJsonAssertionRestriction<T, TMember>
+    {
+        AwesomeAssertions.Json.IJsonAssertionOptions<T> WhenTypeIs<TMemberType>()
+            where TMemberType : TMember;
+    }
+    public class JTokenAssertions : AwesomeAssertions.Primitives.ReferenceTypeAssertions<Newtonsoft.Json.Linq.JToken, AwesomeAssertions.Json.JTokenAssertions>
+    {
+        public JTokenAssertions(Newtonsoft.Json.Linq.JToken subject, AwesomeAssertions.Execution.AssertionChain assertionChain) { }
+        protected override string Identifier { get; }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> BeEquivalentTo(Newtonsoft.Json.Linq.JToken expected, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> BeEquivalentTo(string expected, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> BeEquivalentTo(Newtonsoft.Json.Linq.JToken expected, System.Func<AwesomeAssertions.Json.IJsonAssertionOptions<object>, AwesomeAssertions.Json.IJsonAssertionOptions<object>> config, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndWhichConstraint<AwesomeAssertions.Json.JTokenAssertions, Newtonsoft.Json.Linq.JToken> ContainSingleItem(string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> ContainSubtree(Newtonsoft.Json.Linq.JToken subtree, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> ContainSubtree(string subtree, string because = "", params object[] becauseArgs) { }
+        public string Format(Newtonsoft.Json.Linq.JToken value, bool useLineBreaks = false) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> HaveCount(int expected, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndWhichConstraint<AwesomeAssertions.Json.JTokenAssertions, Newtonsoft.Json.Linq.JToken> HaveElement(string expected) { }
+        public AwesomeAssertions.AndWhichConstraint<AwesomeAssertions.Json.JTokenAssertions, Newtonsoft.Json.Linq.JToken> HaveElement(string expected, string because, params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> HaveValue(string expected) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> HaveValue(string expected, string because, params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> MatchRegex(string regularExpression) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> MatchRegex(string regularExpression, string because, params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> NotBeEquivalentTo(Newtonsoft.Json.Linq.JToken unexpected, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> NotBeEquivalentTo(string unexpected, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndWhichConstraint<AwesomeAssertions.Json.JTokenAssertions, Newtonsoft.Json.Linq.JToken> NotHaveElement(string unexpected, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> NotHaveValue(string unexpected, string because = "", params object[] becauseArgs) { }
+        public AwesomeAssertions.AndConstraint<AwesomeAssertions.Json.JTokenAssertions> NotMatchRegex(string regularExpression, string because = "", params object[] becauseArgs) { }
+    }
+    public class JTokenFormatter : AwesomeAssertions.Formatting.IValueFormatter
+    {
+        public JTokenFormatter() { }
+        public bool CanHandle(object value) { }
+        public void Format(object value, AwesomeAssertions.Formatting.FormattedObjectGraph formattedGraph, AwesomeAssertions.Formatting.FormattingContext context, AwesomeAssertions.Formatting.FormatChild formatChild) { }
+    }
+    public static class JsonAssertionExtensions
+    {
+        public static AwesomeAssertions.Json.JTokenAssertions Should(this Newtonsoft.Json.Linq.JObject jObject) { }
+        public static AwesomeAssertions.Json.JTokenAssertions Should(this Newtonsoft.Json.Linq.JToken jToken) { }
+        public static AwesomeAssertions.Json.JTokenAssertions Should(this Newtonsoft.Json.Linq.JValue jValue) { }
+    }
+    public sealed class JsonAssertionOptions<T> : AwesomeAssertions.Equivalency.EquivalencyOptions<T>, AwesomeAssertions.Json.IJsonAssertionOptions<T>
+    {
+        public JsonAssertionOptions(AwesomeAssertions.Equivalency.EquivalencyOptions<T> equivalencyAssertionOptions) { }
+        public AwesomeAssertions.Json.IJsonAssertionRestriction<T, TProperty> Using<TProperty>(System.Action<AwesomeAssertions.Equivalency.IAssertionContext<TProperty>> action) { }
+    }
+    public sealed class JsonAssertionRestriction<T, TProperty> : AwesomeAssertions.Json.IJsonAssertionRestriction<T, TProperty>
+    {
+        public AwesomeAssertions.Json.IJsonAssertionOptions<T> WhenTypeIs<TMemberType>()
+            where TMemberType : TProperty { }
+    }
+    public static class ObjectAssertionsExtensions
+    {
+        [AwesomeAssertions.CustomAssertion]
+        public static AwesomeAssertions.AndConstraint<AwesomeAssertions.Primitives.ObjectAssertions> BeJsonSerializable(this AwesomeAssertions.Primitives.ObjectAssertions assertions, string because = "", params object[] becauseArgs) { }
+        [AwesomeAssertions.CustomAssertion]
+        public static AwesomeAssertions.AndConstraint<AwesomeAssertions.Primitives.ObjectAssertions> BeJsonSerializable<T>(this AwesomeAssertions.Primitives.ObjectAssertions assertions, string because = "", params object[] becauseArgs) { }
+        [AwesomeAssertions.CustomAssertion]
+        public static AwesomeAssertions.AndConstraint<AwesomeAssertions.Primitives.ObjectAssertions> BeJsonSerializable<T>(this AwesomeAssertions.Primitives.ObjectAssertions assertions, System.Func<AwesomeAssertions.Equivalency.EquivalencyOptions<T>, AwesomeAssertions.Equivalency.EquivalencyOptions<T>> options, string because = "", params object[] becauseArgs) { }
+    }
+    public static class StringAssertionsExtensions
+    {
+        [AwesomeAssertions.CustomAssertion]
+        public static AwesomeAssertions.AndWhichConstraint<AwesomeAssertions.Primitives.StringAssertions, Newtonsoft.Json.Linq.JToken> BeValidJson(this AwesomeAssertions.Primitives.StringAssertions stringAssertions, string because = "", params object[] becauseArgs) { }
+    }
+}

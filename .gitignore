@@ -81,7 +81,7 @@ _TeamCity*
 
 # NCrunch
 .*crunch*.local.xml
-_NCrunch_FluentAssertions/*
+_NCrunch_AwesomeAssertions/*
 
 # Installshield output folder
 [Ee]xpress/

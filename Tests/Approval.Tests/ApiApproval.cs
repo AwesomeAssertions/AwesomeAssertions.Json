@@ -22,14 +22,14 @@ public class ApiApproval
     public Task ApproveApi(string framework)
     {
         var configuration = typeof(ApiApproval).Assembly.GetCustomAttribute<AssemblyConfigurationAttribute>()!.Configuration;
-        var assemblyFile = CombinedPaths("Src", "FluentAssertions.Json", "bin", configuration, framework, "FluentAssertions.Json.dll");
+        var assemblyFile = CombinedPaths("Src", "AwesomeAssertions.Json", "bin", configuration, framework, "AwesomeAssertions.Json.dll");
         var assembly = Assembly.LoadFile(assemblyFile);
         var publicApi = assembly.GeneratePublicApi(options: null);
 
         return Verifier
             .Verify(publicApi)
             .ScrubLinesContaining("FrameworkDisplayName")
-            .UseDirectory(Path.Combine("ApprovedApi", "FluentAssertions.Json"))
+            .UseDirectory(Path.Combine("ApprovedApi", "AwesomeAssertions.Json"))
             .UseFileName(framework)
             .DisableDiff();
     }
@@ -38,7 +38,7 @@ public class ApiApproval
     {
         public TargetFrameworksTheoryData()
         {
-            var csproj = CombinedPaths("Src", "FluentAssertions.Json", "FluentAssertions.Json.csproj");
+            var csproj = CombinedPaths("Src", "AwesomeAssertions.Json", "AwesomeAssertions.Json.csproj");
             var project = XDocument.Load(csproj);
             var targetFrameworks = project.XPathSelectElement("/Project/PropertyGroup/TargetFrameworks");
             AddRange(targetFrameworks!.Value.Split(';'));

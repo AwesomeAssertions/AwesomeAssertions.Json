@@ -2,7 +2,7 @@
 ## If your change does change the API on purpose and you double-checked correctness of the changes you can use this script to change the "approved" state of the API
 ## Make sure that you run the approval tests before running this script, because the tests generate *.received.txt files.
 
-$ApprovalFiles = ".\Tests\Approval.Tests\ApprovedApi\FluentAssertions.Json\";
+$ApprovalFiles = ".\Tests\Approval.Tests\ApprovedApi\AwesomeAssertions.Json\";
 
 ## Remove current "approved" API 
 Remove-Item "$ApprovalFiles\*.verified.txt"
