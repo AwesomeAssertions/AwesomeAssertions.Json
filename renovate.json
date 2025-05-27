@@ -11,7 +11,8 @@
     ],
 	"ignoreDeps": [
         "Newtonsoft.Json",
-        "AwesomeAssertions"
+        "AwesomeAssertions",
+        "Microsoft.NET.Test.Sdk"
     ],
     "packageRules": [
         {
