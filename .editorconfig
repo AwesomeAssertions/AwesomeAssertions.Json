@@ -249,6 +249,8 @@ dotnet_diagnostic.AV1555.severity = suggestion
 dotnet_diagnostic.AV1561.severity = suggestion
 # AV1564: Parameter in public or internal member is of type bool or bool?
 dotnet_diagnostic.AV1564.severity = suggestion
+# AV1850: Method argument calls a nested method
+dotnet_diagnostic.AV1580.severity = none # also triggers for constructors, which is nonsense
 # AV1706: Parameter 'p' should have a more descriptive name
 dotnet_diagnostic.AV1706.severity = suggestion
 # AV1708: Type name contains term that should be avoided
