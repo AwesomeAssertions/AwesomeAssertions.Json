@@ -10,8 +10,8 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <PackageId>AwesomeAssertions.Json</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
@@ -27,7 +27,6 @@
     <PackageIcon>AwesomeAssertions.png</PackageIcon>
     <PackageReleaseNotes>See https://github.com/AwesomeAssertions/AwesomeAssertions.Json/releases/</PackageReleaseNotes>
     <Copyright>Copyright Dennis Doomen 2010-2021, AwesomeAssertions 2025-</Copyright>
-    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net47|AnyCPU'">
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
