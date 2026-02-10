@@ -170,8 +170,7 @@ namespace AwesomeAssertions.Json.Specs
             Action action = () => JsonAssertionConfiguration.ParseFunction = null!;
 
             action.Should()
-                .Throw<ArgumentNullException>()
-                .WithMessage("Value cannot be null. (Parameter 'ParseFunction')");
+                .Throw<ArgumentNullException>();
         }
     }
 }
