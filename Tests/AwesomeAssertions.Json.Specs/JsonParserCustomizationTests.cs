@@ -65,9 +65,8 @@ namespace AwesomeAssertions.Json.Specs
         public void BeEquivalentTo_of_string_containing_date__with_DEFAULT_parser__fails()
         {
             // assert with no action (default behavior)
-            Action testSubject = TestSubject_BeEquivalentTo;
-
-            testSubject.Should()
+            new Action(TestSubject_BeEquivalentTo)
+                .Should()
                 .Throw<XunitException>(because: "default parser creates a DateTime when meets a date-like string")
                 .Which
                 .Message.Should().Contain("JSON document has a string instead of a date at $.");
@@ -80,8 +79,9 @@ namespace AwesomeAssertions.Json.Specs
             JsonAssertionConfiguration.ParseFunction = CustomParser;
 
             // assert
-            Action testSubject = TestSubject_BeEquivalentTo;
-            testSubject.Should().NotThrow();
+            new Action(TestSubject_BeEquivalentTo)
+                .Should()
+                .NotThrow();
         }
 
         [Fact]
@@ -91,8 +91,9 @@ namespace AwesomeAssertions.Json.Specs
             JsonAssertionConfiguration.ParseFunction = CustomParser;
 
             // assert
-            Action testSubject = TestSubject_ContainSubtree;
-            testSubject.Should().NotThrow();
+            new Action(TestSubject_ContainSubtree)
+                .Should()
+                .NotThrow();
         }
 
         // example of insufficient default behavior
@@ -100,9 +101,9 @@ namespace AwesomeAssertions.Json.Specs
         public void NotBeEquivalentTo_of_string_containing_date__with_DEFAULT_parser__is_false_positive()
         {
             // assert with no action (default behavior)
-            Action testSubject = TestSubject_NotBeEquivalentTo;
-
-            testSubject.Should().NotThrow();
+            new Action(TestSubject_NotBeEquivalentTo)
+                .Should()
+                .NotThrow();
         }
 
         [Fact]
@@ -112,8 +113,8 @@ namespace AwesomeAssertions.Json.Specs
             JsonAssertionConfiguration.ParseFunction = CustomParser;
 
             // assert
-            Action testSubject = TestSubject_NotBeEquivalentTo;
-            testSubject.Should()
+            new Action(TestSubject_NotBeEquivalentTo)
+                .Should()
                 .Throw<XunitException>()
                 .Which
                 .Message.Should().Contain("Expected JSON document not to be equivalent to");
@@ -124,9 +125,9 @@ namespace AwesomeAssertions.Json.Specs
         public void BeValidJson_of_string_containing_repeating_keys__with_DEFAULT_parser__is_false_positive()
         {
             // assert with no action (default behavior)
-            Action testSubject = TestSubject_BeValidJson;
-
-            testSubject.Should().NotThrow();
+            new Action(TestSubject_BeValidJson)
+                .Should()
+                .NotThrow();
         }
 
         [Fact]
@@ -136,8 +137,8 @@ namespace AwesomeAssertions.Json.Specs
             JsonAssertionConfiguration.ParseFunction = CustomParser;
 
             // assert
-            Action testSubject = TestSubject_BeValidJson;
-            testSubject.Should()
+            new Action(TestSubject_BeValidJson)
+                .Should()
                 .Throw<XunitException>()
                 .Which
                 .Message.Should().Contain("the name 'repeating_key' already exists");
