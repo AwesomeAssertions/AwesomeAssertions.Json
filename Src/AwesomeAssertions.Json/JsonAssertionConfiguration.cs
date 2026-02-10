@@ -18,8 +18,8 @@ namespace AwesomeAssertions.Json
 
             set
             {
-                if(value == null)
-                    throw new ArgumentNullException(nameof(ParseFunction), "Parser cannot be null.");
+                if (value is null)
+                    throw new ArgumentNullException(nameof(ParseFunction));
                 _parser = value;
             }
         }

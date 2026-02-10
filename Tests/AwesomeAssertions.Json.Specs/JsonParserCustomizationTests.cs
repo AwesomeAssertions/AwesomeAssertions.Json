@@ -171,7 +171,7 @@ namespace AwesomeAssertions.Json.Specs
 
             action.Should()
                 .Throw<ArgumentNullException>()
-                .WithMessage("Parser cannot be null. (Parameter 'ParseFunction')");
+                .WithMessage("Value cannot be null. (Parameter 'ParseFunction')");
         }
     }
 }
