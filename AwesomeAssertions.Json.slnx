@@ -1,0 +1,27 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="CI" />
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+    <File Path="Tests/Default.testsettings" />
+  </Folder>
+  <Project Path="build/_build.csproj">
+    <BuildType Solution="CI|*" Project="Release" />
+    <Build Project="false" />
+  </Project>
+  <Project Path="Src/AwesomeAssertions.Json/AwesomeAssertions.Json.csproj">
+    <BuildType Solution="CI|*" Project="Release" />
+  </Project>
+  <Project Path="Tests/Approval.Tests/Approval.Tests.csproj">
+    <BuildType Solution="CI|*" Project="Release" />
+  </Project>
+  <Project Path="Tests/AwesomeAssertions.Json.Specs/AwesomeAssertions.Json.Specs.csproj">
+    <BuildType Solution="CI|*" Project="Debug" />
+  </Project>
+  <Properties Name="MonoDevelopProperties">
+    <Property Name="StartupItem" Value="AwesomeAssertions.Silverlight\Silverlight.csproj" />
+  </Properties>
+</Solution>
