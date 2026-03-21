@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
@@ -39,7 +40,7 @@ class Build : NukeBuild
     [Solution(GenerateProjects = true)]
     readonly Solution Solution;
 
-    [GitVersion(Framework = "net6.0")]
+    [GitVersion(Framework = "net10.0")]
     readonly GitVersion GitVersion;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
@@ -47,6 +48,8 @@ class Build : NukeBuild
     AbsolutePath TestsDirectory => RootDirectory / "tests";
 
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
+
+    AbsolutePath TestResultsDirectory => RootDirectory / "TestResults";
 
     string SemVer;
 
@@ -110,22 +113,24 @@ class Build : NukeBuild
         .DependsOn(Compile)
         .Executes(() =>
         {
+            IEnumerable<string> frameworks = Solution.AwesomeAssertions_Json_Specs.GetTargetFrameworks();
             if (EnvironmentInfo.IsWin)
-            {
-                DotNetTest(s => s
-                    .SetProjectFile(Solution.AwesomeAssertions_Json_Specs)
-                    .SetFramework("net47")
-                    .SetConfiguration("Debug")
-                    .EnableNoBuild());
-            }
+                frameworks = frameworks.Except(["net47"]);
 
             DotNetTest(s => s
-                .SetProjectFile(Solution.AwesomeAssertions_Json_Specs)
-                .SetFramework("net8.0")
                 .SetConfiguration("Debug")
+                .SetProjectFile(Solution.AwesomeAssertions_Json_Specs)
+                .SetProcessEnvironmentVariable("DOTNET_CLI_UI_LANGUAGE", "en-US")
+                .SetResultsDirectory(TestResultsDirectory)
                 .EnableNoBuild()
                 .SetDataCollector("XPlat Code Coverage")
-                .SetResultsDirectory(RootDirectory / "TestResults"));
+                .AddRunSetting(
+                    "DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.DoesNotReturnAttribute",
+                    "DoesNotReturnAttribute")
+                .CombineWith(
+                    frameworks,
+                    (settings, framework) => settings
+                        .SetFramework(framework)), completeOnFailure: true);
         });
 
     Target CodeCoverage => _ => _
@@ -133,14 +138,14 @@ class Build : NukeBuild
         .Executes(() =>
         {
             ReportGenerator(s => s
-                .SetProcessToolPath(NuGetToolPathResolver.GetPackageExecutable("ReportGenerator", "ReportGenerator.dll", framework: "net6.0"))
-                .SetTargetDirectory(RootDirectory / "TestResults" / "reports")
-                .AddReports(RootDirectory / "TestResults/**/coverage.cobertura.xml")
+                .SetProcessToolPath(NuGetToolPathResolver.GetPackageExecutable("ReportGenerator", "ReportGenerator.dll", framework: "net10.0"))
+                .SetTargetDirectory(TestResultsDirectory / "reports")
+                .AddReports(TestResultsDirectory / "**/coverage.cobertura.xml")
                 .AddReportTypes("HtmlInline_AzurePipelines_Dark", "lcov")
                 .SetClassFilters("-System.Diagnostics.CodeAnalysis.StringSyntaxAttribute")
                 .SetAssemblyFilters("+AwesomeAssertions.Json"));
 
-            string link = RootDirectory / "TestResults" / "reports" / "index.html";
+            string link = TestResultsDirectory / "reports" / "index.html";
 
             Serilog.Log.Information($"Code coverage report: \x1b]8;;file://{link.Replace('\\', '/')}\x1b\\{link}\x1b]8;;\x1b\\");
         });
