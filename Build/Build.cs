@@ -114,8 +114,8 @@ class Build : FalloutBuild
         .Executes(() =>
         {
             IEnumerable<string> frameworks = Solution.AwesomeAssertions_Json_Specs.GetTargetFrameworks();
-            if (EnvironmentInfo.IsWin)
-                frameworks = frameworks.Except(["net47"]);
+            if (!EnvironmentInfo.IsWin)
+                frameworks = frameworks.Except(["net472"]);
 
             DotNetTest(s => s
                 .SetConfiguration("Debug")
