@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- To reduce build times, we only enable analyzers for the newest TFM -->
   <PropertyGroup>
-    <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net472;netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1701;1702;1705;1591;1574;1572;1573;419</NoWarn>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
@@ -27,9 +27,6 @@
     <PackageIcon>AwesomeAssertions.png</PackageIcon>
     <PackageReleaseNotes>See https://github.com/AwesomeAssertions/AwesomeAssertions.Json/releases/</PackageReleaseNotes>
     <Copyright>Copyright Dennis Doomen 2010-2021, AwesomeAssertions 2025-</Copyright>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net47|AnyCPU'">
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AwesomeAssertions" Version="9.0.0" />
