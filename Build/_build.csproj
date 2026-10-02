@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Fallout.Common" Version="10.3.49" />
     <PackageDownload Include="GitVersion.Tool" Version="[6.5.1]" />
-    <PackageDownload Include="ReportGenerator" Version="[5.5.0]" />
+    <PackageDownload Include="ReportGenerator" Version="[5.5.11]" />
     <!-- Replace the implicitly referenced version 6.12.1, which is defined by the package Fallout.Common and has known vulnerabilities, with a fixed version -->
     <PackageReference Include="Nuget.Packaging" Version="7.9.0" />
     <!-- Replace the implicitly referenced version 10.0.6, which is defined by the package Fallout.Common and has known vulnerabilities, with a fixed version -->
