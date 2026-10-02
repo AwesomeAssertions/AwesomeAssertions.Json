@@ -19,12 +19,8 @@ using static Fallout.Common.Tools.ReportGenerator.ReportGeneratorTasks;
 [DotNetVerbosityMapping]
 class Build : FalloutBuild
 {
-    /* Support plugins are available for:
-       - JetBrains ReSharper        https://nuke.build/resharper
-       - JetBrains Rider            https://nuke.build/rider
-       - Microsoft VisualStudio     https://nuke.build/visualstudio
-       - Microsoft VSCode           https://nuke.build/vscode
-    */
+    const string NetFrameworkVersion = "net472";
+
     public static int Main() => Execute<Build>(x => x.Push);
 
     GitHubActions GitHubActions => GitHubActions.Instance;
@@ -43,17 +39,25 @@ class Build : FalloutBuild
     [GitVersion(Framework = "net10.0")]
     readonly GitVersion GitVersion;
 
-    AbsolutePath SourceDirectory => RootDirectory / "src";
+    AbsolutePath SourceDirectory => RootDirectory / "Src";
 
-    AbsolutePath TestsDirectory => RootDirectory / "tests";
+    AbsolutePath TestsDirectory => RootDirectory / "Tests";
 
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
 
     AbsolutePath TestResultsDirectory => RootDirectory / "TestResults";
 
+    /// <summary>
+    /// We need to provide test settings.
+    /// By default, code with [DebuggerNonUserCode] is excluded.
+    /// But this is used several times in our code.
+    /// We can use the "runsettings" format (VSTest) also for the MTP platform tests.
+    /// </summary>
+    static AbsolutePath CoverageSettingsFile => RootDirectory / "Tests" / "CodeCoverage.runsettings";
+
     string SemVer;
 
-    Target Clean => _ => _
+    Target Clean => d => d
         .Executes(() =>
         {
             SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(path => path.DeleteDirectory());
@@ -61,25 +65,25 @@ class Build : FalloutBuild
             ArtifactsDirectory.CreateOrCleanDirectory();
         });
 
-    Target CalculateNugetVersion => _ => _
+    Target CalculateNugetVersion => d => d
         .Executes(() =>
         {
             SemVer = GitVersion.SemVer;
             if (IsPullRequest)
             {
                 Serilog.Log.Information(
-                    "Branch spec {branchspec} is a pull request. Adding build number {buildnumber}",
+                    "Branch spec {BranchSpec} is a pull request. Adding build number {BuildNumber}",
                     BranchSpec, BuildNumber);
 
                 SemVer = string.Join('.', GitVersion.SemVer.Split('.').Take(3).Union(new[] { BuildNumber }));
             }
 
-            Serilog.Log.Information("SemVer = {semver}", SemVer);
+            Serilog.Log.Information("SemVer = {SemVer}", SemVer);
         });
 
     bool IsPullRequest => GitHubActions?.IsPullRequest ?? false;
 
-    Target Restore => _ => _
+    Target Restore => d => d
         .DependsOn(Clean)
         .Executes(() =>
         {
@@ -87,7 +91,7 @@ class Build : FalloutBuild
                 .SetProjectFile(Solution));
         });
 
-    Target Compile => _ => _
+    Target Compile => d => d
         .DependsOn(Restore)
         .Executes(() =>
         {
@@ -103,10 +107,12 @@ class Build : FalloutBuild
         .Executes(() =>
         {
             DotNetTest(s => s
-                .SetConfiguration("Release")
-                .EnableNoBuild()
-                .CombineWith(
-                    cc => cc.SetProjectFile(Solution.Approval_Tests)));
+                    .SetConfiguration("Release")
+                    .SetProcessEnvironmentVariable("DOTNET_CLI_UI_LANGUAGE", "en-US")
+                    .EnableNoBuild()
+                    .SetResultsDirectory(TestResultsDirectory)
+                    .CombineWith(cc => cc.SetProjectFile(Solution.Approval_Tests)),
+                completeOnFailure: true);
         });
 
     Target UnitTests => _ => _
@@ -115,32 +121,43 @@ class Build : FalloutBuild
         {
             IEnumerable<string> frameworks = Solution.AwesomeAssertions_Json_Specs.GetTargetFrameworks();
             if (!EnvironmentInfo.IsWin)
-                frameworks = frameworks.Except(["net472"]);
+                frameworks = frameworks.Except([NetFrameworkVersion]);
 
             DotNetTest(s => s
-                .SetConfiguration("Debug")
-                .SetProjectFile(Solution.AwesomeAssertions_Json_Specs)
-                .SetProcessEnvironmentVariable("DOTNET_CLI_UI_LANGUAGE", "en-US")
-                .SetResultsDirectory(TestResultsDirectory)
-                .EnableNoBuild()
-                .SetDataCollector("XPlat Code Coverage")
-                .AddRunSetting(
-                    "DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.DoesNotReturnAttribute",
-                    "DoesNotReturnAttribute")
-                .CombineWith(
-                    frameworks,
-                    (settings, framework) => settings
-                        .SetFramework(framework)), completeOnFailure: true);
+                    .SetConfiguration("Debug")
+                    .SetProjectFile(Solution.AwesomeAssertions_Json_Specs)
+                    .SetProcessEnvironmentVariable("DOTNET_CLI_UI_LANGUAGE", "en-US")
+                    .SetResultsDirectory(TestResultsDirectory)
+                    .EnableNoBuild()
+                    .CombineWith(
+                        frameworks,
+                        (settings, framework) => 
+                        {
+                            var coverageFile = $"{framework}.cobertura.xml";
+                            return settings
+                                .SetFramework(framework)
+                                .SetProcessAdditionalArguments(
+                                    "--coverage",
+                                    $"--coverage-output={coverageFile}",
+                                    "--report-trx",
+                                    "--report-trx-filename",
+                                    $"{framework}.trx",
+                                    "--coverage-settings",
+                                    CoverageSettingsFile);
+                        }), 
+                completeOnFailure: true);
         });
 
-    Target CodeCoverage => _ => _
+    Target CodeCoverage => d => d
         .DependsOn(UnitTests)
         .Executes(() =>
         {
+            string generator = NuGetToolPathResolver.GetPackageExecutable(
+                "ReportGenerator", "ReportGenerator.dll", framework: "net10.0");
             ReportGenerator(s => s
-                .SetProcessToolPath(NuGetToolPathResolver.GetPackageExecutable("ReportGenerator", "ReportGenerator.dll", framework: "net10.0"))
+                .SetProcessToolPath(generator)
                 .SetTargetDirectory(TestResultsDirectory / "reports")
-                .AddReports(TestResultsDirectory / "**/coverage.cobertura.xml")
+                .AddReports(TestResultsDirectory / "**/*.cobertura.xml")
                 .AddReportTypes("HtmlInline_AzurePipelines_Dark", "lcov")
                 .SetClassFilters("-System.Diagnostics.CodeAnalysis.StringSyntaxAttribute")
                 .SetAssemblyFilters("+AwesomeAssertions.Json"));
@@ -150,7 +167,7 @@ class Build : FalloutBuild
             Serilog.Log.Information($"Code coverage report: \x1b]8;;file://{link.Replace('\\', '/')}\x1b\\{link}\x1b]8;;\x1b\\");
         });
 
-    Target Pack => _ => _
+    Target Pack => d => d
         .DependsOn(ApiChecks)
         .DependsOn(UnitTests)
         .DependsOn(CodeCoverage)
@@ -167,7 +184,7 @@ class Build : FalloutBuild
                 .SetVersion(SemVer));
         });
 
-    Target Push => _ => _
+    Target Push => d => d
         .DependsOn(Pack)
         .OnlyWhenDynamic(() => IsTag)
         .Executes(() =>
