@@ -5,6 +5,16 @@
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!--
+    Verify has introduced License Fee using Sponsorchip.
+    We can use the OpenSource excemption:
+    https://simoncropp.github.io/SponsorCheck/package/Verify
+    -->
+    <Verify_SponsorshipExemption>OpenSource</Verify_SponsorshipExemption>
+    <Verify_SponsorshipExemptionUntil>$([System.DateTime]::UtcNow.AddMonths(12).ToString('yyyy-MM'))</Verify_SponsorshipExemptionUntil>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(TargetFramework)' != 'net10.0'">
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
